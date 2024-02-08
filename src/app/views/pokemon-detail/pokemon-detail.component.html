@@ -1,0 +1,83 @@
+<div class="container">
+  <div *ngIf="pokemon" class="mt-4">
+    <div class="justify-content-center row">
+      <h2 class="col-md-11 text-center">{{ pokemon.name }}</h2>
+      <button type="button" class="btn btn-info col-md-1" (click)="return()">
+        Volver
+      </button>
+    </div>
+    <div class="card my-4">
+      <div class="card-body row">
+        <div class="col-md-5 card">
+          <img [src]="frontalImage" />
+        </div>
+        <div class="container col-md-7">
+          <div class="border px-4 container">
+            <legend class="w-auto">Attributtes</legend>
+
+            <div class="row" *ngFor="let stat of pokemon.stats">
+              <label class="col-md-6">{{ stat.stat.name }} base:</label>
+              <label class="col-md-6 text-end" [for]="stat.stat.name">
+                {{ stat.base_stat }}
+              </label>
+            </div>
+            <br />
+            <div class="row">
+              <label class="col-md-6">experience gained by defeating:</label>
+              <label class="col-md-6 text-end" for="expirienceDefeated">
+                {{ pokemon.base_experience }}</label
+              >
+            </div>
+            <div class="row">
+              <label class="col-md-6">Heigth:</label>
+              <label class="col-md-6 text-end" for="height">
+                {{ pokemon.height }}</label
+              >
+            </div>
+            <div class="row">
+              <label class="col-md-6">Weight:</label>
+              <label class="col-md-6 text-end" for="weight">
+                {{ pokemon.weight }}</label
+              >
+            </div>
+          </div>
+          <div class="border px-4 mt-2">
+            <legend class="w-auto">Skills</legend>
+            <ul class="list-group pb-2">
+              <li
+                *ngFor="let skill of pokemon.abilities; let i = index"
+                class="list-group-item"
+              >
+                <span class="badge bg-primary">{{ i + 1 }}</span>
+                <label for="skillName" class="mx-2"
+                  ><strong>{{ skill.ability.name }}</strong>
+                  <span *ngIf="skill.is_hidden"> - Hidden skill</span>
+                </label>
+                <label for="skillDescription" *ngIf="skill.ability.effect">
+                  {{ skill.ability.effect }}</label
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="container col-md-12">
+          <div class="border px-4 mt-2">
+            <legend class="w-auto">Moves</legend>
+            <p>Below are the moves that can learn:</p>
+            <ul class="list-group list-skills overflow-auto pb-2">
+              <li
+                *ngFor="let move of pokemon.moves; let i = index"
+                class="list-group-item"
+              >
+                <span class="badge bg-primary">{{ i + 1 }}</span>
+                <label for="moveName" class="mx-2"
+                  ><strong>{{ move.move.name }}</strong>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

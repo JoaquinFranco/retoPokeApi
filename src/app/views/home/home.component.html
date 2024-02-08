@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row mt-4">
+    <div
+      class="list-group"
+      infinite-scroll
+      [infiniteScrollDistance]="1"
+      [infiniteScrollUpDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScrollDown()"
+    >
+      <div
+        *ngFor="let pokemon of pokemonList"
+        class="list-group-item list-group-item-action"
+      >
+        <div class="row">
+          <div class="col-md-10">{{ pokemon.name }}</div>
+          <div class="col-md-2">
+            <button
+              type="button"
+              class="btn btn-info col-md-12"
+              (click)="showDetail(pokemon)"
+            >
+              Ver Pokemon
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
