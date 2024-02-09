@@ -9,28 +9,32 @@ import { PokeApiService } from '../../services/poke-api.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  pokemonList: PokemonListResults[] = [];
-  nextPokemonsUrl: string = '';
-
+  pokemonSearch: string = '';
+  listShowed: PokemonListResults[] = [];
   constructor(
     public pokemonApiService: PokeApiService,
     public router: Router
   ) {}
 
   ngOnInit(): void {
-    this.pokemonApiService.getPokemons().subscribe((response) => {
-      this.pokemonList = response.results;
-      this.nextPokemonsUrl = response.next;
-    });
+    if (this.pokemonApiService.pokemonList.length === 0) {
+      this.pokemonApiService.getPokemons().subscribe((response) => {
+        this.listShowed = this.pokemonApiService.pokemonList = response.results;
+        this.pokemonApiService.nextPokemonsUrl = response.next;
+      });
+    }
+    if (this.listShowed.length === 0) {
+      this.listShowed = this.pokemonApiService.pokemonList;
+    }
   }
 
   onScrollDown() {
     this.pokemonApiService
-      .getPokemons(this.nextPokemonsUrl)
+      .getPokemons(this.pokemonApiService.nextPokemonsUrl)
       .subscribe((response) => {
-        this.pokemonList = this.pokemonList.concat(response.results);
-        this.nextPokemonsUrl = response.next;
-        console.log(this.pokemonList);
+        this.listShowed = this.pokemonApiService.pokemonList =
+          this.pokemonApiService.pokemonList.concat(response.results);
+        this.pokemonApiService.nextPokemonsUrl = response.next;
       });
   }
 
@@ -38,5 +42,19 @@ export class HomeComponent implements OnInit {
     let aux = pokemon.url.split('/');
     let pokemonId = aux[aux.length - 2];
     this.router.navigateByUrl('/detail/' + pokemonId);
+  }
+
+  search() {
+    this.listShowed = this.pokemonApiService.pokemonList.filter((element) => {
+      return element.name.includes(this.pokemonSearch);
+    });
+  }
+
+  topScroll() {
+    window.scrollTo(0, 0);
+  }
+
+  downScroll() {
+    window.scrollTo(0, document.body.scrollHeight);
   }
 }

@@ -1,29 +1,58 @@
 <div class="container">
   <div class="row mt-4">
-    <div
-      class="list-group"
-      infinite-scroll
-      [infiniteScrollDistance]="1"
-      [infiniteScrollUpDistance]="2"
-      [infiniteScrollThrottle]="50"
-      (scrolled)="onScrollDown()"
-    >
+    <div class="col-md-3 search">
+      <input
+        type="text"
+        [(ngModel)]="pokemonSearch"
+        id="pokemonSearch"
+        placeholder="Inserta nombre de pokemon"
+        class="form-control col-md-3"
+        (ngModelChange)="search()"
+      />
+    </div>
+    <div style="margin-top: 3em" class="row">
       <div
-        *ngFor="let pokemon of pokemonList"
-        class="list-group-item list-group-item-action"
+        style="overflow: hidden"
+        class="list-group col-md-11"
+        infinite-scroll
+        [infiniteScrollDistance]="1"
+        [infiniteScrollUpDistance]="2"
+        [infiniteScrollThrottle]="50"
+        (scrolled)="onScrollDown()"
       >
-        <div class="row">
-          <div class="col-md-10">{{ pokemon.name }}</div>
-          <div class="col-md-2">
-            <button
-              type="button"
-              class="btn btn-info col-md-12"
-              (click)="showDetail(pokemon)"
-            >
-              Ver Pokemon
-            </button>
+        <div
+          *ngFor="let pokemon of listShowed"
+          class="list-group-item list-group-item-action"
+        >
+          <div class="row">
+            <div class="col-md-10">{{ pokemon.name }}</div>
+            <div class="col-md-2">
+              <button
+                type="button"
+                class="btn btn-info col-md-12"
+                (click)="showDetail(pokemon)"
+              >
+                Ver Pokemon
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="col-md-1">
+        <button
+          type="button"
+          class="btn btn-info up mt-2"
+          (click)="topScroll()"
+        >
+          Arriba
+        </button>
+        <button
+          type="button"
+          class="btn btn-info down mb-4"
+          (click)="downScroll()"
+        >
+          Abajo
+        </button>
       </div>
     </div>
   </div>

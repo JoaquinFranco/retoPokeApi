@@ -1,13 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pokemon, PokemonList, Skill } from '../models/pokemon';
+import {
+  Pokemon,
+  PokemonList,
+  PokemonListResults,
+  Skill,
+} from '../models/pokemon';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PokeApiService {
-  private pokemonApiUrl: string = 'https://pokeapi.co/api/v2/';
+  pokemonList: PokemonListResults[] = [];
+  nextPokemonsUrl: string = '';
   private pokemonRoot: string = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(public http: HttpClient) {}

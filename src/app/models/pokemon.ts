@@ -21,6 +21,10 @@ export interface Pokemon {
   stats: [Stats];
   moves: [Moves];
   sprites: Sprites;
+  cries?: {
+    latest: string;
+    legacy: string;
+  };
 }
 
 interface Abilities {
