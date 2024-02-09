@@ -29,13 +29,15 @@ export class HomeComponent implements OnInit {
   }
 
   onScrollDown() {
-    this.pokemonApiService
-      .getPokemons(this.pokemonApiService.nextPokemonsUrl)
-      .subscribe((response) => {
-        this.listShowed = this.pokemonApiService.pokemonList =
-          this.pokemonApiService.pokemonList.concat(response.results);
-        this.pokemonApiService.nextPokemonsUrl = response.next;
-      });
+    if (this.pokemonApiService.nextPokemonsUrl) {
+      this.pokemonApiService
+        .getPokemons(this.pokemonApiService.nextPokemonsUrl)
+        .subscribe((response) => {
+          this.listShowed = this.pokemonApiService.pokemonList =
+            this.pokemonApiService.pokemonList.concat(response.results);
+          this.pokemonApiService.nextPokemonsUrl = response.next;
+        });
+    }
   }
 
   showDetail(pokemon: PokemonListResults) {
