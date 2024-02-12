@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { PokemonListResults } from '../../models/pokemon';
 import { PokeApiService } from '../../services/poke-api.service';
 
@@ -11,9 +12,14 @@ import { PokeApiService } from '../../services/poke-api.service';
 export class HomeComponent implements OnInit {
   pokemonSearch: string = '';
   listShowed: PokemonListResults[] = [];
+  languageList = [
+    { code: 'en', label: 'English' },
+    { code: 'es', label: 'Español' },
+  ];
   constructor(
     public pokemonApiService: PokeApiService,
-    public router: Router
+    public router: Router,
+    private translate: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +32,18 @@ export class HomeComponent implements OnInit {
     if (this.listShowed.length === 0) {
       this.listShowed = this.pokemonApiService.pokemonList;
     }
+  }
+
+  changeSiteLanguage(localeCode: string): void {
+    const selectedLanguage = this.languageList
+      .find((language) => language.code === localeCode)
+      ?.label.toString();
+    if (selectedLanguage) {
+      this.pokemonApiService.siteLanguage = selectedLanguage;
+      this.translate.use(localeCode);
+    }
+    const currentLanguage = this.translate.currentLang;
+    console.log('currentLanguage', currentLanguage);
   }
 
   onScrollDown() {

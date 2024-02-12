@@ -1,0 +1,23 @@
+{
+  "insertNamePokemon": "Inserta nombre de pokemon",
+  "seePokemon": "Ver Pokemon",
+  "noResults": "Sin resultados",
+  "up": "Arriba",
+  "down": "Abajo",
+  "return": "Volver",
+  "3D": "3D",
+  "male": "Másculino",
+  "female": "Femenino",
+  "attributtes": "Atributos",
+  "expirienceDefeated": "Experiencia obtenida al derrotarlo",
+  "height": "Altura",
+  "weight": "Peso",
+  "effortDefeated": "Puntos de esfuerzo obtenidos al derrotarlo",
+  "cries": "Gritos",
+  "latestCries": "Gritos en series o juegos nuevos",
+  "legacyCries": "Gritos en juegos antiguos",
+  "skills": "Habilidades",
+  "hiddenSkill": "Habilidad oculta",
+  "moves": "Ataques",
+  "movesLearn": "Ataques que puede aprender"
+}

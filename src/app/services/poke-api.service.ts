@@ -14,6 +14,7 @@ import {
 export class PokeApiService {
   pokemonList: PokemonListResults[] = [];
   nextPokemonsUrl: string = '';
+  siteLanguage = 'English';
   private pokemonRoot: string = 'https://pokeapi.co/api/v2/pokemon';
 
   constructor(public http: HttpClient) {}

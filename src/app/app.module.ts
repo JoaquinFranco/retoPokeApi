@@ -8,6 +8,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routes';
 import { PokeApiService } from './services/poke-api.service';
+import { NgxTranslateModule } from './translate/translate.module';
 import { HomeComponent } from './views/home/home.component';
 import { PokemonDetailComponent } from './views/pokemon-detail/pokemon-detail.component';
 
@@ -20,6 +21,7 @@ import { PokemonDetailComponent } from './views/pokemon-detail/pokemon-detail.co
     AppRoutingModule,
     ReactiveFormsModule,
     InfiniteScrollModule,
+    NgxTranslateModule,
   ],
   declarations: [AppComponent, HomeComponent, PokemonDetailComponent],
   bootstrap: [AppComponent],

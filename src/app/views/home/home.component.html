@@ -5,15 +5,15 @@
         type="text"
         [(ngModel)]="pokemonSearch"
         id="pokemonSearch"
-        placeholder="Inserta nombre de pokemon"
+        [placeholder]="'insertNamePokemon' | translate"
         class="form-control col-md-3"
         (ngModelChange)="search()"
       />
     </div>
     <div style="margin-top: 3em" class="row">
       <div
-        style="overflow: hidden"
         class="list-group col-md-11"
+        style="overflow: hidden"
         infinite-scroll
         [infiniteScrollDistance]="1"
         [infiniteScrollUpDistance]="2"
@@ -30,29 +30,49 @@
                 class="btn btn-info col-md-12"
                 (click)="showDetail(pokemon)"
               >
-                Ver pokemon
+                {{ "seePokemon" | translate }}
               </button>
             </div>
           </div>
         </div>
         }@empty {
-        <span>Sin resultados</span>
+        <span>{{ "noResults" | translate }}</span>
         }
       </div>
       <div class="col-md-1">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle up"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ pokemonApiService.siteLanguage }}
+          </button>
+          <ul class="dropdown-menu">
+            <li *ngFor="let language of languageList">
+              <a
+                class="dropdown-item"
+                (click)="changeSiteLanguage(language.code)"
+              >
+                {{ language.label }}
+              </a>
+            </li>
+          </ul>
+        </div>
         <button
           type="button"
-          class="btn btn-primary up mt-2"
+          class="btn btn-primary up mt-5"
           (click)="topScroll()"
         >
-          Arriba
+          {{ "up" | translate }}
         </button>
         <button
           type="button"
           class="btn btn-warning down mb-4"
           (click)="downScroll()"
         >
-          Abajo
+          {{ "down" | translate }}
         </button>
       </div>
     </div>

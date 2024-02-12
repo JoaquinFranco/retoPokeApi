@@ -1,0 +1,23 @@
+{
+  "insertNamePokemon": "Pokemon's name",
+  "seePokemon": "See pokemon",
+  "noResults": "Without results",
+  "up": "Up",
+  "down": "Down",
+  "return": "Return",
+  "3D": "3D",
+  "male": "Male",
+  "female": "Female",
+  "attributtes": "Attributtes",
+  "expirienceDefeated": "experience obtain to defeated",
+  "height": "Height",
+  "weight": "Weight",
+  "effortDefeated": "P.effort obtain to defeated",
+  "cries": "Cries",
+  "latestCries": "New games or series cries",
+  "legacyCries": "Old games cries",
+  "skills": "Skills",
+  "hiddenSkill": "Hidden skill",
+  "moves": "Moves",
+  "movesLearn": "Below are the moves that can learn"
+}
