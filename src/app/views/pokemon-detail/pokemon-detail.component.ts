@@ -84,15 +84,13 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   private getSprites() {
-    this.frontalImage =
-      this.pokemon.sprites.other['official-artwork'].front_default;
-    this.frontalImageShiny =
-      this.pokemon.sprites.other['official-artwork'].front_shiny;
-    this.frontalImageHome = this.pokemon.sprites.other.home.front_default;
-    this.frontalImageShinyHome = this.pokemon.sprites.other.home.front_shiny;
-    this.frontalImageFemHome = this.pokemon.sprites.other.home.front_female;
-    this.frontalImageShinyFemHome =
-      this.pokemon.sprites.other.home.front_shiny_female;
+    const { 'official-artwork': artwork, home } = this.pokemon.sprites.other;
+    this.frontalImage = artwork.front_default;
+    this.frontalImageShiny = artwork.front_shiny;
+    this.frontalImageHome = home.front_default;
+    this.frontalImageShinyHome = home.front_shiny;
+    this.frontalImageFemHome = home.front_female;
+    this.frontalImageShinyFemHome = home.front_shiny_female;
   }
 
   getSkillsData() {

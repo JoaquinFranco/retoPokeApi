@@ -20,35 +20,36 @@
         [infiniteScrollThrottle]="50"
         (scrolled)="onScrollDown()"
       >
-        <div
-          *ngFor="let pokemon of listShowed"
-          class="list-group-item list-group-item-action"
-        >
+        @for (pokemon of listShowed; track pokemon.name) {
+        <div class="list-group-item list-group-item-action">
           <div class="row">
-            <div class="col-md-10">{{ pokemon.name }}</div>
+            <div class="col-md-10">{{ pokemon.name | titlecase }}</div>
             <div class="col-md-2">
               <button
                 type="button"
                 class="btn btn-info col-md-12"
                 (click)="showDetail(pokemon)"
               >
-                Ver Pokemon
+                Ver pokemon
               </button>
             </div>
           </div>
         </div>
+        }@empty {
+        <span>Sin resultados</span>
+        }
       </div>
       <div class="col-md-1">
         <button
           type="button"
-          class="btn btn-info up mt-2"
+          class="btn btn-primary up mt-2"
           (click)="topScroll()"
         >
           Arriba
         </button>
         <button
           type="button"
-          class="btn btn-info down mb-4"
+          class="btn btn-warning down mb-4"
           (click)="downScroll()"
         >
           Abajo

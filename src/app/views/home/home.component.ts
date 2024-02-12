@@ -47,9 +47,50 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
+    let attempts = 0;
     this.listShowed = this.pokemonApiService.pokemonList.filter((element) => {
       return element.name.includes(this.pokemonSearch);
     });
+
+    if (this.listShowed.length > 0) {
+      // Se encontraron resultados, puedes manejarlos aquí
+      console.log('Resultados encontrados:', this.listShowed);
+    } else {
+      // No se encontraron resultados, realiza otra petición o ajusta lógica según necesidades
+      console.log('No se encontraron resultados. Intento:', attempts + 1);
+      attempts++;
+      this.search2(attempts);
+    }
+  }
+
+  search2(attempts: number) {
+    if (this.pokemonApiService.nextPokemonsUrl) {
+      this.pokemonApiService
+        .getPokemons(this.pokemonApiService.nextPokemonsUrl)
+        .subscribe((response) => {
+          this.listShowed = this.pokemonApiService.pokemonList =
+            this.pokemonApiService.pokemonList.concat(response.results);
+          this.pokemonApiService.nextPokemonsUrl = response.next;
+          this.listShowed = this.pokemonApiService.pokemonList.filter(
+            (element) => {
+              return element.name.includes(this.pokemonSearch);
+            }
+          );
+          if (this.listShowed.length > 0) {
+            // Se encontraron resultados, puedes manejarlos aquí
+            console.log('Resultados encontrados:', this.listShowed);
+          } else {
+            // No se encontraron resultados, realiza otra petición o ajusta lógica según necesidades
+            console.log('No se encontraron resultados. Intento:', attempts + 1);
+            console.log(
+              'Existe next Page:',
+              this.pokemonApiService.nextPokemonsUrl
+            );
+            attempts++;
+            this.search2(attempts);
+          }
+        });
+    }
   }
 
   topScroll() {
