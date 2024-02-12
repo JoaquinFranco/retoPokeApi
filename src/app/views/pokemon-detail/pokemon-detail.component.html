@@ -103,13 +103,18 @@
               </div>
             </div>
           </div>
-          <div class="border px-4 container" *ngIf="pokemon.cries?.latest">
+          <div
+            class="border px-4 container"
+            *ngIf="pokemon.cries?.latest || pokemon.cries?.legacy"
+          >
             <legend class="w-auto">Gritos</legend>
-            <div class="row">
+            <div class="row" *ngIf="pokemon.cries?.latest">
               <label class="col-md-6">New games or series cries:</label>
               <audio class="col-md-6 text-end" for="cries" controls="controls">
                 <source [src]="pokemon.cries?.latest" type="audio/ogg" />
               </audio>
+            </div>
+            <div class="row" *ngIf="pokemon.cries?.legacy">
               <label class="col-md-6">Old games cries:</label>
               <audio class="col-md-6 text-end" for="cries" controls="controls">
                 <source [src]="pokemon.cries?.legacy" type="audio/ogg" />
