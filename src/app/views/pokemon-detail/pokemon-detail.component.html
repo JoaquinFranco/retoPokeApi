@@ -21,6 +21,9 @@
             *ngIf="isHomeDesign && genderSwitch && frontalImageFemHome"
             [src]="!isShiny ? frontalImageFemHome : frontalImageShinyFemHome"
           />
+          <span *ngIf="!frontalImageHome && !frontalImage">{{
+            "noResults" | translate
+          }}</span>
           <div *ngIf="frontalImageHome" class="form-check form-switch mx-auto">
             <input
               class="form-check-input"
