@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public pokemonApiService: PokeApiService,
     public router: Router,
-    private translate: TranslateService
+    public translate: TranslateService
   ) {}
 
   ngOnInit(): void {
