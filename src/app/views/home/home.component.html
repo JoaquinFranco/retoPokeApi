@@ -21,7 +21,10 @@
         (scrolled)="onScrollDown()"
       >
         @for (pokemon of listShowed; track pokemon.name) {
-        <div class="list-group-item list-group-item-action">
+        <div
+          *ngIf="!showSpinner"
+          class="list-group-item list-group-item-action"
+        >
           <div class="row">
             <div class="col-md-10">{{ pokemon.name | titlecase }}</div>
             <div class="col-md-2">
@@ -36,8 +39,14 @@
           </div>
         </div>
         }@empty {
-        <span>{{ "noResults" | translate }}</span>
+        <span *ngIf="!showSpinner">{{ "noResults" | translate }}</span>
         }
+        <div *ngIf="showSpinner">
+          <mat-progress-spinner
+            class="mx-auto"
+            mode="indeterminate"
+          ></mat-progress-spinner>
+        </div>
       </div>
       <div class="col-md-1">
         <div class="dropdown">

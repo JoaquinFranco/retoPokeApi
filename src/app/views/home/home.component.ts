@@ -10,6 +10,7 @@ import { PokeApiService } from '../../services/poke-api.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+  showSpinner: boolean = false;
   pokemonSearch: string = '';
   listShowed: PokemonListResults[] = [];
   languageList = [
@@ -69,6 +70,9 @@ export class HomeComponent implements OnInit {
     this.listShowed = this.pokemonApiService.pokemonList.filter((element) => {
       return element.name.includes(this.pokemonSearch);
     });
+    if (this.listShowed.length === 0) {
+      this.showSpinner = true;
+    }
 
     this.pokemonFinded(attempts);
   }
@@ -88,6 +92,8 @@ export class HomeComponent implements OnInit {
           );
           this.pokemonFinded(attempts);
         });
+    } else {
+      this.showSpinner = false;
     }
   }
 
@@ -95,6 +101,7 @@ export class HomeComponent implements OnInit {
     if (this.listShowed.length > 0) {
       // Se encontraron resultados, puedes manejarlos aquí
       console.log('Resultados encontrados:', this.listShowed);
+      this.showSpinner = false;
     } else {
       // No se encontraron resultados, realiza otra petición o ajusta lógica según necesidades
       console.log('No se encontraron resultados. Intento:', attempts + 1);
