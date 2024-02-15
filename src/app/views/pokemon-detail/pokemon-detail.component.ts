@@ -26,12 +26,12 @@ export class PokemonDetailComponent implements OnInit {
     name: string;
     value: number;
   };
-  textEffortShowed!: [string];
+  textEffortShowed!: string[];
 
   constructor(
     public pokeApiService: PokeApiService,
     public router: Router,
-    private activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

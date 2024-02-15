@@ -59,7 +59,7 @@ describe('HomeComponent', () => {
   });
 
   it('test showDetail: ', () => {
-    let pokemon = mockPokemon.PokemonListResult;
+    let pokemon = mockPokemon.pokemonListResult;
     let call = spyOn(component.router, 'navigateByUrl');
     component.showDetail(pokemon);
     expect(call).toHaveBeenCalled();
